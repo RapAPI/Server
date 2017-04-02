@@ -101,7 +101,7 @@ def groupingAlgorithm(arrstrVerses):
     return arrstrFinalLyrics
 
 def rearrange_text(stdin):
-    import sys, operator;
+    import sys, operator, random;
 
     word_group = list()
     line_lengths = list()
@@ -110,12 +110,12 @@ def rearrange_text(stdin):
         words = line.split()
         word_group.append(words)
         line_lengths.append(len(words))
-        print(words)
+        #print(words)
     median_line_length = sorted(line_lengths)[int(len(sorted(line_lengths))/2)]
 
-    print("Median Line Lenght", median_line_length)
+    #print("Median Line Lenght", median_line_length)
 
-    print("Pre-split line count", len(word_group))
+    #print("Pre-split line count", len(word_group))
 
     w = 0
     while w < len(word_group):
@@ -132,7 +132,7 @@ def rearrange_text(stdin):
             continue
         w+=1
             
-    print("post-split line number", len(word_group))
+    #print("post-split line number", len(word_group))
 
     rhymes_list = dict()
     line_num = 0
@@ -149,9 +149,22 @@ def rearrange_text(stdin):
         if(rhymes_list.get(''.join(list(reversed(phones_list)))) == None):
             rhymes_list[''.join(list(reversed(phones_list)))] = list()
         rhymes_list[''.join(list(reversed(phones_list)))].append(line_num)
-        print(line_num, ' '.join(words))
+        #print(line_num, ' '.join(words))
         line_num += 1
-        text.append(' '.join(words))
+        punctuation_num = random.randrange(0,10)
+        if(set(range(0,4)).issuperset(set([punctuation_num]))):
+            punctuation = '.'
+        elif(set(range(4,6)).issuperset(set([punctuation_num]))):
+            punctuation = ','
+        elif(punctuation_num == 6):
+            punctuation = '!'
+        elif(punctuation_num == 7):
+            punctuation = '?'
+        elif(punctuation_num == 8):
+            punctuation = ';'
+        else:
+            punctuation = '!'
+        text.append(' '.join(words) + punctuation)
         #print (list(reversed(phones_list)))
 
     #helper = [(key, len(rhymes_list[key])) for key in rhymes_list.keys()]
@@ -159,28 +172,31 @@ def rearrange_text(stdin):
     #print(rhymes_list[helper[0][0]])
     #print(sorted((rhymes_list), key=operator.itemgetter(1, 2, 3, 4)))
     #print(sorted((rhymes_list)))
-    print(list(sorted((rhymes_list))))
+    #print(list(sorted((rhymes_list))))
     values = list(sorted((rhymes_list)))
     line_order = list()
     for v in values:
         for r in rhymes_list[v]:
             line_order.append(r)
-    print(line_order)
-    print(len(line_order))
+    #print(line_order)
+    #print(len(line_order))
 
     output_text = list()
     for l in line_order:
         output_text.append(text[l])
 
-    print(output_text)
+    #print(output_text)
 
     output_text += rubbish
 
-    print('\n'.join(output_text))
-    print('\n')
+    #print('\n'.join(output_text))
+    #print('\n')
 
     output_text = [s for s in output_text if len(s) > 0]
     output_text = groupingAlgorithm(output_text)
 
-    print('\n'.join(output_text))
-    return output_text
+    #print('\n'.join(output_text))
+    return '\n'.join(output_text)
+
+import sys
+print(rearrange_text(sys.stdin))
