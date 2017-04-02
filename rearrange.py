@@ -100,12 +100,14 @@ def groupingAlgorithm(arrstrVerses):
 
     return arrstrFinalLyrics
 
-def rearrange_text(stdin):
+def rearrange_text(arg):
     import sys, operator, random;
 
     word_group = list()
     line_lengths = list()
-    for line in stdin:
+    arg_list = list(str(arg).split('\n'))
+    #print(arg_list)
+    for line in arg_list:
         line = line.strip()
         words = line.split()
         word_group.append(words)
@@ -196,7 +198,6 @@ def rearrange_text(stdin):
     output_text = groupingAlgorithm(output_text)
 
     #print('\n'.join(output_text))
+    
     return '\n'.join(output_text)
 
-import sys
-print(rearrange_text(sys.stdin))
