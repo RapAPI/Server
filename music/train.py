@@ -81,10 +81,8 @@ updt=[W.assign_add(W_upd), bv.assign_add(bv_upd), bh.assign_add(bh_upd)]
 sess = tf.Session()
 init = tf.global_variables_initializer()
 sess.run(init)
-for epoch in range(epochs):
-            print("epoch")
+for epoch in tqdm(range(epochs)):
             for song in songs:
-                print("song")
                 song = np.array(song)
                 #reshaping song into chunks of timestep size
                 chunks = song.shape[0]/timesteps
