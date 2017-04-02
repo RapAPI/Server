@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 import pronouncing
 import random
 import rearrange
@@ -6,7 +6,6 @@ import os
 import re
 #import lyrics.sample as lyrics_sample
 #import music
-
 import tflearn
 import tensorflow as tf
 from tflearn.data_utils import *
@@ -16,7 +15,7 @@ from tflearn.data_utils import *
 app = Flask(__name__)
 m_lyrics = None
 maxlen = 20
-path = '/music/kanye_verses.txt'
+path = 'lyrics/kanye_verses.txt'
 
 @app.route("/")
 def hello():
@@ -26,7 +25,8 @@ def hello():
 def lyrics():
 
     seed = random_sequence_from_textfile(path, maxlen)
-    print(m_lyrics.generate(60, temperature=0.8, seq_seed=seed))
+    lyrics = m_lyrics.generate(600, temperature=0.7, seq_seed=seed)
+    lyrics = rearrange.rearrange_text(lyrics)
     return jsonify(lyrics=lyrics)
 
 
@@ -73,4 +73,4 @@ def load_lyrics_model():
 
 if __name__ == "__main__":
     m_lyrics = load_lyrics_model()
-    app.run()
+    app.run(host='0.0.0.0', port=8000)
