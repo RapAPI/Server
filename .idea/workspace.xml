@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bf116ba7-7899-4e85-b9cd-fcb25e301d7e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/music/train.py" afterPath="$PROJECT_DIR$/music/train.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="deeprap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -110,8 +109,8 @@
       <file leaf-file-name="train.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/music/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21473159" vertical-offset="967" max-vertical-offset="1768">
-              <caret line="67" column="49" selection-start-line="67" selection-start-column="49" selection-end-line="67" selection-end-column="49" />
+            <state vertical-scroll-proportion="0.8064919" vertical-offset="0" max-vertical-offset="1870">
+              <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -813,8 +812,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/music/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21473159" vertical-offset="967" max-vertical-offset="1768">
-          <caret line="67" column="49" selection-start-line="67" selection-start-column="49" selection-end-line="67" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.8064919" vertical-offset="0" max-vertical-offset="1870">
+          <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
