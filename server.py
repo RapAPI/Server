@@ -72,6 +72,5 @@ def load_lyrics_model():
 
 
 if __name__ == "__main__":
-    global m_lyrics
     m_lyrics = load_lyrics_model()
     app.run()

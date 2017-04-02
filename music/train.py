@@ -23,10 +23,10 @@ highestnote=midi_manipulation.upperBound
 noterange=highestnote-lowestnote
 
 #Hyperparams
-timesteps=15 #no of notes to create at a time
+timesteps=50 #no of notes to create at a time
 nv=2*noterange*timesteps #visible layer size.
 nh=50 #hidden layer size.
-epochs=200
+epochs=2000
 batch_size=100
 lr=tf.constant(0.005, tf.float32) #learning rate
 
@@ -48,7 +48,7 @@ def gibbs_step(count, k, xk):
 def gibbs_sample(k):
     #Gibbs sample(done for k iterations) is used to approximate the distribution of the RBM(defined by W, bh, bv)
     ct = tf.constant(0)
-    [_, _, x_sample] = control_flow_ops.while_loop(lambda count, num_iter, *args: count < num_iter,gibbs_step, [ct, tf.constant(k), x], 1, False)
+    [_, _, x_sample] = control_flow_ops.while_loop(lambda count, num_iter, *args: count < num_iter,gibbs_step, [ct, tf.constant(k), x], parallel_iterations=1, back_prop=False)
     #to stop tensorflow from propagating gradients back through the gibbs step
     x_sample = tf.stop_gradient(x_sample)
     return x_sample
@@ -64,9 +64,9 @@ h_sample = sample(tf.sigmoid(tf.matmul(x_sample, W) + bh))
 #Update W, bh, and bv, based on the difference between the samples that are drawn and the original values
 size_tr = tf.cast(tf.shape(x)[0], tf.float32)
 eta = lr/size_tr
-W_upd = tf.mul(eta, tf.sub(tf.matmul(tf.transpose(x), h), tf.matmul(tf.transpose(x_sample), h_sample)))
-bv_upd = tf.mul(eta, tf.reduce_sum(tf.sub(x, x_sample), 0, True))
-bh_upd = tf.mul(eta, tf.reduce_sum(tf.sub(h, h_sample), 0, True))
+W_upd = tf.multiply(eta, tf.subtract(tf.matmul(tf.transpose(x), h), tf.matmul(tf.transpose(x_sample), h_sample)))
+bv_upd = tf.multiply(eta, tf.reduce_sum(tf.subtract(x, x_sample), 0, True))
+bh_upd = tf.multiply(eta, tf.reduce_sum(tf.subtract(h, h_sample), 0, True))
 updt = [W.assign_add(W_upd), bv.assign_add(bv_upd), bh.assign_add(bh_upd)]
 
 
@@ -87,7 +87,7 @@ for epoch in tqdm(range(epochs)):
                     sess.run(updt, feed_dict={x: tr_x})
 
 
-pickle.dump()
+#pickle.dump()
 sample = gibbs_sample(1).eval(session=sess, feed_dict={x: np.zeros((10, nv))})
 generatedfiles = []
 for i in range(sample.shape[0]):
