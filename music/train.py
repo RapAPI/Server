@@ -21,6 +21,13 @@ lowestnote=midi_manipulation.lowerBound
 highestnote=midi_manipulation.upperBound
 noterange=highestnote-lowestnote
 
+#Hyperparams
+timesteps=15 #no of notes to create at a time
+nv=2*noterange*timesteps #visible layer size.
+nh=50 #hidden layer size.
+epochs=200
+batch_size=100
+lr=tf.constant(0.005, tf.float32) #learning rate
 
 #Placeholders & vars for Network
 
@@ -30,13 +37,7 @@ bh=tf.Variable(tf.zeros([1, nh],  tf.float32, name="bh")) #bias for hidden layer
 bv=tf.Variable(tf.zeros([1, nv],  tf.float32, name="bv")) #bias for visible layer
 
 
-#Hyperparams
-timesteps=15 #no of notes to create at a time
-nv=2*noterange*timesteps #visible layer size.
-nh=50 #hidden layer size.
-epochs=200
-batch_size=100
-lr=tf.constant(0.005, tf.float32) #learning rate
+
 
 #Sampling helpers
 
