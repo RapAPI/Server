@@ -7,6 +7,8 @@ from tqdm import tqdm
 import midi_manipulation
 from tensorflow.python.ops import control_flow_ops
 
+
+tf.reset_default_graph()
 path="/home/ec2-user/ai/deeprap/music/blues"
 files=glob.glob('{}/*.*mid*'.format(path))
 songs=[]
@@ -77,7 +79,7 @@ updt=[W.assign_add(W_upd), bv.assign_add(bv_upd), bh.assign_add(bh_upd)]
 
 
 sess = tf.Session()
-init = tf.initialize_all_variables()
+init = tf.global_variables_initializer()
 sess.run(init)
 for epoch in tqdm(range(epochs)):
             for song in songs:
