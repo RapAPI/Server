@@ -82,7 +82,9 @@ sess = tf.Session()
 init = tf.global_variables_initializer()
 sess.run(init)
 for epoch in range(epochs):
+            print("epoch")
             for song in songs:
+                print("song")
                 song = np.array(song)
                 #reshaping song into chunks of timestep size
                 chunks = song.shape[0]/timesteps
