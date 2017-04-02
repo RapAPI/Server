@@ -9,7 +9,7 @@ from tensorflow.python.ops import control_flow_ops
 
 
 tf.reset_default_graph()
-path="/home/ec2-user/ai/deeprap/music/blues"
+path="/home/ec2-user/ai/ServerDef/music/blues"
 files=glob.glob('{}/*.*mid*'.format(path))
 songs=[]
 for f in tqdm(files):
