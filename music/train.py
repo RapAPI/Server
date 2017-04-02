@@ -81,7 +81,7 @@ updt=[W.assign_add(W_upd), bv.assign_add(bv_upd), bh.assign_add(bh_upd)]
 sess = tf.Session()
 init = tf.global_variables_initializer()
 sess.run(init)
-for epoch in tqdm(range(epochs)):
+for epoch in range(epochs):
             for song in songs:
                 song = np.array(song)
                 #reshaping song into chunks of timestep size
@@ -91,6 +91,7 @@ for epoch in tqdm(range(epochs)):
                 song = np.reshape(song, [chunks, song.shape[1]*timesteps])
                 #Train the RBM on batch_size examples at a time
                 for i in range(1, len(song), batch_size):
+                    print("train")
                     tr_x=song[i:i+batch_size]
                     sess.run(updt, feed_dict={x: tr_x})
 
