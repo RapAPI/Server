@@ -4,8 +4,8 @@ import random
 import rearrange
 
 
-import lyrics.sample as lyrics_sample
-import music
+#import lyrics.sample as lyrics_sample
+#import music
 
 import tflearn
 import tensorflow as tf
