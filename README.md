@@ -1,5 +1,10 @@
-**New** Link to the slide for the presentation at MLH Prime Europe 2017 
+**New** 
+Link to the slide for the presentation at MLH Prime Europe 2017 
 https://docs.google.com/presentation/d/13JLpi0x7jYfCmXI_f98f3wVNe7Vx5XtbI39Iv2eUuOU/edit?usp=sharing
+
+**New**
+Video:
+https://www.youtube.com/watch?v=v2O-KNGCSXU
 
 # Server
 This is the **server** of Deep Rap, basically it is a simple Flask server and two tensorflow models.
